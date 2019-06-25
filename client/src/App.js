@@ -14,6 +14,7 @@ class App extends Component {
   componentDidMount() {
     const pusher = new Pusher(process.env.REACT_APP_PUSHER_APP_KEY, {
       cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
+      encrypted: true,
     });
 
     const channel = pusher.subscribe('bot');

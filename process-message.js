@@ -18,7 +18,6 @@ const pusher = new Pusher({
   key: process.env.REACT_APP_PUSHER_APP_KEY,
   secret: process.env.REACT_APP_PUSHER_APP_SECRET,
   cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
-  encrypted: true,
 });
 
 const sessionClient = new Dialogflow.SessionsClient(config);
