@@ -8,7 +8,7 @@ const languageCode = 'en-US';
 
 const config = {
   credentials: {
-    private_key: process.env.REACT_APP_DIALOGFLOW_PRIVATE_KEY,
+    private_key: JSON.parse(process.env.REACT_APP_DIALOGFLOW_PRIVATE_KEY),
     client_email: process.env.REACT_APP_DIALOGFLOW_CLIENT_EMAIL,
   },
 };
