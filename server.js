@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // });
 
 
-app.post('https://elsa-ai.herokuapp.com/api', (req, res) => {
+app.post('/api', (req, res) => {
   const { message } = req.body;
   processMessage(message);
   res.send('ok')
