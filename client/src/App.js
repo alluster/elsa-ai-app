@@ -14,7 +14,6 @@ class App extends Component {
   componentDidMount() {
     const pusher = new Pusher(process.env.REACT_APP_PUSHER_APP_KEY, {
       cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
-      encrypted: true,
     });
 
     const channel = pusher.subscribe('bot');
@@ -46,7 +45,7 @@ class App extends Component {
       conversation: [...this.state.conversation, msg],
     });
 
-    fetch('/api', {
+    fetch('http://localhost:5000/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
