@@ -23,6 +23,7 @@ app.post('/api', (req, res) => {
   const { message } = req.body;
   processMessage(message);
   res.send('ok')
+  console.lo('moiiii')
 });
 if(process.env.NODE_ENV === 'production'){
   //set static folder
@@ -31,7 +32,7 @@ if(process.env.NODE_ENV === 'production'){
 app.get('*',(req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
-var server = app.listen(process.env.PORT || 5000, function () {
+var server = app.listen( 5000, function () {
   var port = server.address().port;
   console.log("Express is working on port " + port);
 });

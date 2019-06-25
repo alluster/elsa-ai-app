@@ -46,7 +46,7 @@ class App extends Component {
       conversation: [...this.state.conversation, msg],
     });
 
-    fetch('https://elsa-ai.herokuapp.com/api', {
+    fetch('/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
