@@ -1,13 +1,9 @@
 const Dialogflow = require('dialogflow');
 const Pusher = require('pusher');
-const requestIp = require('request-ip');
-const ipMiddleware = function(req, res, next) {
-  const clientIp = requestIp.getClientIp(req); 
-  next();
-};
+
 // You can find your project ID in your Dialogflow agent settings
 const projectId = 'elsa-eygvdo'; //https://dialogflow.com/docs/agents#settings
-const sessionId = ipMiddleware;
+const sessionId = '123456';
 const languageCode = 'en-US';
 
 const config = {
