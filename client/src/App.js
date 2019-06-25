@@ -46,7 +46,7 @@ class App extends Component {
       conversation: [...this.state.conversation, msg],
     });
 
-    fetch('http://localhost:5000/api', {
+    fetch('/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
