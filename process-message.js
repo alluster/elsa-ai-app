@@ -3,7 +3,7 @@ const Pusher = require('pusher');
 
 // You can find your project ID in your Dialogflow agent settings
 const projectId = 'elsa-eygvdo'; //https://dialogflow.com/docs/agents#settings
-const sessionId = '123456';
+const sessionId = Math.random();
 const languageCode = 'en-US';
 
 const config = {
