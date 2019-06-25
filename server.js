@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.post('/api', (req, res) => {
   const { message } = req.body;
   processMessage(message);
-  res.send(console.log('message was sent'))
+  res.send('ok')
 });
 if(process.env.NODE_ENV === 'production'){
   //set static folder
