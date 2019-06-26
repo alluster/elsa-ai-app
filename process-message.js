@@ -54,7 +54,7 @@ sessionClient
   .catch(err => {
     console.error('ERROR:', err);
     });
-
+  };
 
 module.exports = processMessage;
 
