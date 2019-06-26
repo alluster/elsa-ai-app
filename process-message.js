@@ -49,7 +49,7 @@ const processMessage = message => {
           return pusher.trigger('bot', 'bot-response', {
             message: `I suggest you call Tommi about ${tech}`,
           });
-        });
+        
       }
 
       return pusher.trigger('bot', 'bot-response', {
