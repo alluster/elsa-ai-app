@@ -55,7 +55,8 @@ const processMessage = message => {
       return pusher.trigger('bot', 'bot-response', {
         message: result.fulfillmentText,
       });
-    })
+    }
+  })
     .catch(err => {
       console.error('ERROR:', err);
     });
