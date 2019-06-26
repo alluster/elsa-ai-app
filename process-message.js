@@ -45,12 +45,12 @@ const processMessage = message => {
         const tech = result.parameters.fields['technology'].stringValue;
 
         // fetch the temperature from openweather map
-        return () => {
+      
           return pusher.trigger('bot', 'bot-response', {
             message: `I suggest you call Tommi about ${tech}`,
           });
         
-      }
+      
 
       return pusher.trigger('bot', 'bot-response', {
         message: result.fulfillmentText,
