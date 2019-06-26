@@ -1,6 +1,5 @@
 html, body {
   font-family: 'Montserrat', sans-serif;
-
   font-size: 14px/1.21;
   font-weight: 400;
   box-sizing: border-box;
@@ -75,6 +74,13 @@ h1 {
 
 .send-button {
   flex: 1;
-  
+  height: 40px;
+  border-radius: 20px;
+  background-color: #350054;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px/1.21;
+  font-weight: 700 !important;
+  border: none;
 
 }
