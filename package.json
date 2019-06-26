@@ -6,8 +6,8 @@
   "scripts": {
     "client": "cd client && npm run build && npm run start",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "set NODE_ENV=production && cd client && npm install && npm run build",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -16,10 +16,12 @@
     "body-parser": "^1.19.0",
     "concurrently": "^4.1.0",
     "cors": "^2.8.5",
+    "cross-env": "^5.2.0",
     "dialogflow": "^0.10.1",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
+    "nodemon": "^1.19.1",
     "path": "^0.12.7",
     "pusher": "^2.2.0",
     "request-ip": "^2.1.3"

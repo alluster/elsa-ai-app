@@ -5,10 +5,19 @@ const Pusher = require('pusher');
 const projectId = 'elsa-eygvdo'; //https://dialogflow.com/docs/agents#settings
 const sessionId = '123456';
 const languageCode = 'en-US';
+const key = () => {
+  if(process.env.NODE_ENV === 'dev'){
+    return process.env.REACT_APP_DIALOGFLOW_PRIVATE_KEY
+  } else {
+    return (JSON.parse.process.env.REACT_APP_DIALOGFLOW_PRIVATE_KEY)
+  }
+  
 
+}
+console.log(key)
 const config = {
   credentials: {
-    private_key: JSON.parse(process.env.REACT_APP_DIALOGFLOW_PRIVATE_KEY),
+    private_key: key(),
     client_email: process.env.REACT_APP_DIALOGFLOW_CLIENT_EMAIL,
   },
 };
@@ -49,9 +58,8 @@ const processMessage = message => {
           return pusher.trigger('bot', 'bot-response', {
             message: `I suggest you call Tommi about ${tech}`,
           });
-        
-      
-
+    }
+    else {
       return pusher.trigger('bot', 'bot-response', {
         message: result.fulfillmentText,
       });
