@@ -45,15 +45,16 @@ sessionClient
       return pusher.trigger('bot', 'bot-response', {
         message: `I suggest you contact Tommi Heinonen if you have questions about ${tech}`,
       });
-      return pusher.trigger('bot', 'bot-response', {
-        message: result.fulfillmentText,
-      });
     }
-  
+    return pusher.trigger('bot', 'bot-response', {
+      message: result.fulfillmentText,
+    });
+
+  });
   .catch(err => {
     console.error('ERROR:', err);
-  });
     });
 
 
 module.exports = processMessage;
+
