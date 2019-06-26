@@ -82,5 +82,14 @@ h1 {
   font-size: 14px/1.21;
   font-weight: 700 !important;
   border: none;
+  min-width: 100px;
 
+}
+::placeholder{ 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px/1.21;
+  font-weight: 700 !important;
+}
+input {
+  height: 40px
 }
