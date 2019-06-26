@@ -1,5 +1,7 @@
 html, body {
-  font: 14px/1.21 'Helvetica Neue', arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
+
+  font-size: 14px/1.21;
   font-weight: 400;
   box-sizing: border-box;
 }
@@ -50,6 +52,7 @@ h1 {
   margin-bottom: 10px;
   width: 100%;
   display: flex;
+  font-weight: bold;
 }
 
 .chat-bubble.ai {
@@ -57,13 +60,15 @@ h1 {
 }
 
 .chat-bubble.ai .chat-content {
-  background-color: #4c9689;
+  background-color: #350054;
+  color: white;
+
 }
 
 .chat-content {
   display: inline-block;
   padding: 8px 15px;
-  background-color: #0747a7;
+  background-color: #02EBA5;
   color: white;
   border-radius: 10px;
 }

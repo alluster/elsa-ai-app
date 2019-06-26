@@ -51,20 +51,20 @@ const processMessage = message => {
       if (result.intent.displayName === 'Technology') {
         const tech = result.parameters.fields['technology'].stringValue;      
           return pusher.trigger('bot', 'bot-response', {
-            message: `I suggest you call Lasse about ${tech || 'that'}. He's phone number is +358 40 770 7107`,
+            message: `I suggest you call Lasse about ${tech || 'that'}. His phone number is +358 40 770 7107`,
           });
       }
       else if (result.intent.displayName === 'Design') {
         const design = result.parameters.fields['design'].stringValue;      
           return pusher.trigger('bot', 'bot-response', {
-            message: `I suggest you call Aleksanteri Heliövaara about ${design || 'that'}. He's phone number is +358442360304`,
+            message: `I suggest you call Aleksanteri Heliövaara about ${design || 'that'}. His phone number is +358442360304`,
             
           });
       }
       else if (result.intent.displayName === 'Business') {
         const business = result.parameters.fields['business'].stringValue;      
           return pusher.trigger('bot', 'bot-response', {
-            message: `I suggest you call Tommi Heinonen (CEO) about ${business || 'that'}. He's phone number is +358 50 581 3832`,
+            message: `I suggest you call Tommi Heinonen (CEO) about ${business || 'that'}. His phone number is +358 50 581 3832`,
           });
       }
       else {
