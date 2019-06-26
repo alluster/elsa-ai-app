@@ -35,26 +35,31 @@ const processMessage = message => {
     },
   };
 
+  sessionClient
+    .detectIntent(request)
+    .then(responses => {
+      const result = responses[0].queryResult;
 
-sessionClient 
-  .detectIntent(request)
-  .then(responses => {
-    const result = responses[0].queryResult;
-    if(result.intent.displayName === 'Technology') {
-      const tech = result.parameters.fields['technology'].stringValue;
+      // If the intent matches 'detect-city'
+      if (result.intent.displayName === 'Technology') {
+        const tech = result.parameters.fields['technology'].stringValue;
+
+        // fetch the temperature from openweather map
+        return () => {
+          return pusher.trigger('bot', 'bot-response', {
+            message: `I suggest you call Tommi about ${tech}`,
+          });
+        });
+      }
+
       return pusher.trigger('bot', 'bot-response', {
-        message: `I suggest you contact Tommi Heinonen if you have questions about ${tech}`,
+        message: result.fulfillmentText,
       });
-    }
-    return pusher.trigger('bot', 'bot-response', {
-      message: result.fulfillmentText,
+    })
+    .catch(err => {
+      console.error('ERROR:', err);
     });
-
-  });
-  .catch(err => {
-    console.error('ERROR:', err);
-    });
-  };
+};
 
 module.exports = processMessage;
 
