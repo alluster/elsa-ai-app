@@ -48,22 +48,31 @@ const processMessage = message => {
     .then(responses => {
       const result = responses[0].queryResult;
 
-      // If the intent matches 'detect-city'
       if (result.intent.displayName === 'Technology') {
-        const tech = result.parameters.fields['technology'].stringValue;
-
-        // fetch the temperature from openweather map
-      
+        const tech = result.parameters.fields['technology'].stringValue;      
           return pusher.trigger('bot', 'bot-response', {
-            message: `I suggest you call Tommi about ${tech}`,
+            message: `I suggest you call Lasse about ${tech || 'that'}. He's phone number is +358 40 770 7107`,
           });
-    }
-    else {
-      return pusher.trigger('bot', 'bot-response', {
-        message: result.fulfillmentText,
-      });
-    }
-  })
+      }
+      else if (result.intent.displayName === 'Design') {
+        const design = result.parameters.fields['design'].stringValue;      
+          return pusher.trigger('bot', 'bot-response', {
+            message: `I suggest you call Aleksanteri Heliövaara about ${design || 'that'}. He's phone number is +358442360304`,
+            
+          });
+      }
+      else if (result.intent.displayName === 'Business') {
+        const business = result.parameters.fields['business'].stringValue;      
+          return pusher.trigger('bot', 'bot-response', {
+            message: `I suggest you call Tommi Heinonen (CEO) about ${business || 'that'}. He's phone number is +358 50 581 3832`,
+          });
+      }
+      else {
+        return pusher.trigger('bot', 'bot-response', {
+          message: result.fulfillmentText,
+        });
+      }
+    })
     .catch(err => {
       console.error('ERROR:', err);
     });
