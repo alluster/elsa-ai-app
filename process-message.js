@@ -9,12 +9,11 @@ const key = () => {
   if(process.env.NODE_ENV === 'dev'){
     return process.env.REACT_APP_DIALOGFLOW_PRIVATE_KEY
   } else {
-    return (JSON.parse.process.env.REACT_APP_DIALOGFLOW_PRIVATE_KEY)
+    return JSON.parse(process.env.REACT_APP_DIALOGFLOW_PRIVATE_KEY)
   }
   
 
 }
-console.log(key)
 const config = {
   credentials: {
     private_key: key(),
