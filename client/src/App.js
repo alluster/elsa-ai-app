@@ -17,7 +17,7 @@ class App extends Component {
       encrypted: true,
       forceTLS: true
     });
-
+    localStorage.setItem('cookie:', document.cookie);
     const channel = pusher.subscribe('bot');
     channel.bind('bot-response', data => {
       const msg = {
@@ -52,6 +52,7 @@ class App extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         message: this.state.userMessage,
+        cookie: document.cookie
       }),
     });
 
@@ -70,7 +71,7 @@ class App extends Component {
     const chat = this.state.conversation.map((e, index) =>
       ChatBubble(e.text, index, e.user)
     );
-
+    console.log(document.cookie)
     return (
       <div>
         <div className="chat-window">

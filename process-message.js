@@ -1,9 +1,8 @@
 const Dialogflow = require('dialogflow');
 const Pusher = require('pusher');
-
-// You can find your project ID in your Dialogflow agent settings
-const projectId = 'elsa-eygvdo'; //https://dialogflow.com/docs/agents#settings
-const sessionId = '123456';
+const uuidv1 = require('uuid/v1');
+const projectId = 'elsa-eygvdo'; 
+const sessionId = uuidv1()
 const languageCode = 'en-US';
 const key = () => {
   if(process.env.NODE_ENV === 'dev'){
@@ -30,9 +29,9 @@ const pusher = new Pusher({
 
 const sessionClient = new Dialogflow.SessionsClient(config);
 
-const sessionPath = sessionClient.sessionPath(projectId, sessionId);
-
-const processMessage = message => {
+const processMessage = (message) => {
+  const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+  console.log(sessionId)
   const request = {
     session: sessionPath,
     queryInput: {
