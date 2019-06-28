@@ -29,9 +29,9 @@ const pusher = new Pusher({
 
 const sessionClient = new Dialogflow.SessionsClient(config);
 
-const processMessage = (message) => {
+const processMessage = ({message, id}) => {
   const sessionPath = sessionClient.sessionPath(projectId, sessionId);
-  console.log(sessionId)
+  console.log(id)
   const request = {
     session: sessionPath,
     queryInput: {
@@ -49,25 +49,32 @@ const processMessage = (message) => {
 
       if (result.intent.displayName === 'Technology') {
         const tech = result.parameters.fields['technology'].stringValue;      
-          return pusher.trigger('bot', 'bot-response', {
+          return pusher.trigger(id, 'bot-response', {
             message: `I suggest you call Lasse about ${tech || 'that'}. His phone number is +358 40 770 7107`,
           });
       }
       else if (result.intent.displayName === 'Design') {
         const design = result.parameters.fields['design'].stringValue;      
-          return pusher.trigger('bot', 'bot-response', {
+          return pusher.trigger(id, 'bot-response', {
             message: `I suggest you call Aleksanteri Heliövaara about ${design || 'that'}. His phone number is +358442360304`,
+            
+          });
+      }
+      else if (result.intent.displayName === 'Default Welcome Intent') {
+        const design = result.parameters.fields['design'].stringValue;      
+          return pusher.trigger(id, 'bot-response', {
+            message: `Hello there`,
             
           });
       }
       else if (result.intent.displayName === 'Business') {
         const business = result.parameters.fields['business'].stringValue;      
-          return pusher.trigger('bot', 'bot-response', {
+          return pusher.trigger(id, 'bot-response', {
             message: `I suggest you call Tommi Heinonen (CEO) about ${business || 'that'}. His phone number is +358 50 581 3832`,
           });
       }
       else {
-        return pusher.trigger('bot', 'bot-response', {
+        return pusher.trigger(id, 'bot-response', {
           message: result.fulfillmentText,
         });
       }

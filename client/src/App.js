@@ -11,18 +11,25 @@ class App extends Component {
     };
   }
 
+
+  
   componentDidMount() {
+    const randomId = () => {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    };
+    localStorage.setItem('id', randomId() )
+  
     const pusher = new Pusher(process.env.REACT_APP_PUSHER_APP_KEY, {
       cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
       encrypted: true,
       forceTLS: true
     });
-    localStorage.setItem('cookie:', document.cookie);
-    const channel = pusher.subscribe('bot');
+    const channel = pusher.subscribe(localStorage.id);
     channel.bind('bot-response', data => {
       const msg = {
         text: data.message,
         user: 'ai',
+        id: localStorage.id
       };
       this.setState({
         conversation: [...this.state.conversation, msg],
@@ -52,7 +59,7 @@ class App extends Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         message: this.state.userMessage,
-        cookie: document.cookie
+        id: localStorage.id
       }),
     });
 
@@ -71,13 +78,14 @@ class App extends Component {
     const chat = this.state.conversation.map((e, index) =>
       ChatBubble(e.text, index, e.user)
     );
-    console.log(document.cookie)
+    console.log(localStorage.id)
     return (
       <div>
         <div className="chat-window">
           <div className="conversation-view">{chat}</div>
           <div className="message-box">
           <div className="input-container">
+          
           <form onSubmit={this.handleSubmit}>
               <input
                 value={this.state.userMessage}

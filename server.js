@@ -20,7 +20,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/api', (req, res) => {
   const { message } = req.body;
-  processMessage(message);
+  const { id } = req.body
+  processMessage({message, id});
   res.send('ok')
 
 });
